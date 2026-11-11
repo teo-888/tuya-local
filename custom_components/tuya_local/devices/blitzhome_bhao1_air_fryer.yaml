@@ -1,0 +1,118 @@
+name: Blitzhome PE10 air fryer
+
+products:
+  - id: 5qkmo8rawimwnxgw
+    name: Wolfblitz PE10
+
+entities:
+  - entity: switch
+    name: Alimentazione
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Avvio cottura
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: select
+    name: Programma
+    dps:
+      - id: 3
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: French_Fries
+            value: Patatine
+          - dps_val: Chicken_Wrings
+            value: Alette di pollo
+          - dps_val: Pizza
+            value: Pizza
+          - dps_val: Roast_chicken
+            value: Pollo arrosto
+          - dps_val: Meat
+            value: Carne
+          - dps_val: Fish
+            value: Pesce
+          - dps_val: Preheat
+            value: Preriscaldamento
+          - dps_val: Grill
+            value: Grill
+          - dps_val: Bake
+            value: Cottura al forno
+          - dps_val: Keep_warm
+            value: Mantieni in caldo
+          - dps_val: Dehydrate
+            value: Essiccazione
+          - dps_val: Defrast
+            value: Scongelamento
+
+  - entity: sensor
+    name: Stato cottura
+    class: enum
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: standby
+            value: In attesa
+          - dps_val: appointment
+            value: Programmata
+          - dps_val: cooking
+            value: In cottura
+          - dps_val: done
+            value: Terminata
+
+  - entity: number
+    name: Temperatura impostata
+    class: temperature
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: "°C"
+        optional: true
+        range:
+          min: 35
+          max: 200
+        mapping:
+          - step: 5
+
+  - entity: number
+    name: Durata impostata
+    class: duration
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 720
+
+  - entity: sensor
+    name: Tempo rimanente
+    class: duration
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+
+  - entity: sensor
+    name: Codice guasto
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        optional: true
